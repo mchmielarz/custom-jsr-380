@@ -26,8 +26,7 @@ public class BankAccountTest {
 
     @Test
     public void should_fail_miserably() {
-        BankAccount bankAccount = newBankAccount("invalid_iban", "invalid_bic",
-                                                 "invalid_bankAccountNumber");
+        BankAccount bankAccount = newBankAccount("invalid_iban", "invalid_bic", null);
 
         final Set<ConstraintViolation<BankAccount>> constraints = getValidator().validate(bankAccount);
 

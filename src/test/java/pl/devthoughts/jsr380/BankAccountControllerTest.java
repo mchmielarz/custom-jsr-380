@@ -18,7 +18,6 @@ import static java.util.UUID.randomUUID;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.mock;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -38,7 +37,7 @@ public class BankAccountControllerTest {
         final String jsonRequest = asJson(
           request("PL10105000997603123456789123", "EBOSPLPW", "7603123456789123"));
         mvc
-          .perform(post("/bank-accounts/" + randomUUID())
+          .perform(put("/bank-accounts/" + randomUUID())
                       .content(jsonRequest)
                       .contentType(APPLICATION_JSON)
           )
@@ -48,7 +47,7 @@ public class BankAccountControllerTest {
     @Test
     public void should_fail_miserably() throws Exception {
         final String request = asJson(
-          request("iban", "bic", "bankAccountNumber"));
+          request("iban", "bic", null));
         mvc
           .perform(put("/bank-accounts/" + randomUUID())
                      .content(request)
