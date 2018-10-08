@@ -7,11 +7,7 @@ public class BankAccountNumberValidator implements ConstraintValidator<BankAccou
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        if (value == null) {
-            return false;
-        }
-
-        return false;
+        return value != null;
     }
 
 }
